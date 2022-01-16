@@ -14,6 +14,7 @@ export const HomeWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 20px;
+  font-family: 'Nunito Sans', sans-serif;
 `;
 export const ImageFlag = styled.img`
   width: 100%;
@@ -23,7 +24,7 @@ export const CountryInfo = styled.div`
   padding: 0 20px;
 `;
 export const CountryName = styled.p`
-  font-weight: 600;
+  font-weight: 800;
   font-size: 18px;
 `;
 export const CountryPopulation = styled.span`
