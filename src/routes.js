@@ -6,9 +6,8 @@ const AllRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="countries" element={<HomePage />}>
-          <Route path=":countryid" element={<Country />} />
-        </Route>
+        <Route path="/countries" element={<HomePage />} />
+        <Route path="/countries/:countryid" element={<Country />} />
       </Routes>
     </BrowserRouter>
   );

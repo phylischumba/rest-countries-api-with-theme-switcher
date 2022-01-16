@@ -8,6 +8,7 @@ import {
 } from '../components/Card';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery('countries', async () => {
@@ -29,6 +30,12 @@ const HomePage = () => {
           <CardWrapper key={country?.name}>
             <ImageFlag src={country?.flag} alt={`${country?.name}'s flag`} />
             <CountryInfo>
+              <Link
+                style={{ display: 'block', margin: '1rem 0' }}
+                to={`/countries/${country.name}`}
+                key={country.name}>
+                {country.name}
+              </Link>{' '}
               <CountryName>{country?.name}</CountryName>
               <p>
                 <CountryPopulation>Population:</CountryPopulation> {country?.population}
