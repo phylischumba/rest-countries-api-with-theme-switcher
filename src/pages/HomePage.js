@@ -5,10 +5,10 @@ import {
   CountryName,
   CountryInfo,
   CountryPopulation
-} from '../components/Card';
+} from '../Styles';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery('countries', async () => {
@@ -16,26 +16,23 @@ const HomePage = () => {
     return data;
   });
 
-  console.log(isLoading, isError, data, error?.message);
-
   if (isError && error?.message === 'Request failed with status code 404') {
     return <p>404 Error</p>;
   }
+  let navigate = useNavigate();
+
+  const handleClick = (name) => {
+    navigate(`/countries/${name}`);
+  };
 
   return (
     <HomeWrapper>
       {isLoading ? <p>Loading...</p> : <></>}
       {isSuccess ? (
         data.map((country) => (
-          <CardWrapper key={country?.name}>
+          <CardWrapper key={country?.name} onClick={() => handleClick(country?.name)}>
             <ImageFlag src={country?.flag} alt={`${country?.name}'s flag`} />
             <CountryInfo>
-              <Link
-                style={{ display: 'block', margin: '1rem 0' }}
-                to={`/countries/${country.name}`}
-                key={country.name}>
-                {country.name}
-              </Link>{' '}
               <CountryName>{country?.name}</CountryName>
               <p>
                 <CountryPopulation>Population:</CountryPopulation> {country?.population}

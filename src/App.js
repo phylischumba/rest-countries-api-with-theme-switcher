@@ -1,18 +1,7 @@
-// import './App.css';
-// import AllRoutes from './routes';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <AllRoutes />
-//     </div>
-//   );
-// }
-
-// export default App;
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import AllRoutes from './routes';
+import { ThemeButton } from './Styles';
 
 import { lightTheme, darkTheme, GlobalStyles } from './theme';
 
@@ -41,17 +30,17 @@ const App = () => {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <>
         <GlobalStyles />
-        <button onClick={toggleTheme}>
+        <ThemeButton onClick={toggleTheme}>
           {isDarkTheme ? (
             <span aria-label="Light mode" role="img">
-              🌞
+              🌞 Light Mode
             </span>
           ) : (
             <span aria-label="Dark mode" role="img">
-              🌜
+              🌜 Dark Mode
             </span>
           )}
-        </button>
+        </ThemeButton>
         <AllRoutes />
       </>
     </ThemeProvider>

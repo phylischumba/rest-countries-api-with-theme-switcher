@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getCountry } from '../getCountry';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { BackButton } from '../Styles';
 
 export default function Country() {
   const { isSuccess, data } = useQuery('countries', async () => {
@@ -10,10 +11,11 @@ export default function Country() {
   });
   let params = useParams();
   let country = isSuccess && getCountry(params.countryid, data);
-  console.log(params.countryid);
+  let navigate = useNavigate();
 
   return (
-    <main style={{ padding: '1rem' }}>
+    <main style={{ padding: '3rem' }}>
+      <BackButton onClick={() => navigate(-1)}>BACK</BackButton>
       <h2>Total Due: {country.name}</h2>
       <p>
         {country.name}: {country.number}
