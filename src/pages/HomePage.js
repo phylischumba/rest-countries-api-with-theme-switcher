@@ -6,9 +6,11 @@ import {
   CountryInfo,
   CountryPopulation
 } from '../Styles';
+import LoadingDots from '../components/Loader';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ErrorFound, NotFound } from '../components/NotFound';
 
 const HomePage = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery('countries', async () => {
@@ -16,8 +18,12 @@ const HomePage = () => {
     return data;
   });
 
-  if (isError && error?.message === 'Request failed with status code 404') {
-    return <p>404 Error</p>;
+  if (isError) {
+    if (error?.message === 'Request failed with status code 404') {
+      return <NotFound />;
+    } else {
+      return <ErrorFound error={error} />;
+    }
   }
   let navigate = useNavigate();
 
@@ -27,7 +33,7 @@ const HomePage = () => {
 
   return (
     <HomeWrapper>
-      {isLoading ? <p>Loading...</p> : <></>}
+      {isLoading ? <LoadingDots /> : <></>}
       {isSuccess ? (
         data.map((country) => (
           <CardWrapper key={country?.name} onClick={() => handleClick(country?.name)}>
