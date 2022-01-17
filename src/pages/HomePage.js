@@ -7,16 +7,15 @@ import {
   CountryPopulation
 } from '../Styles';
 import LoadingDots from '../components/Loader';
-import { useQuery } from 'react-query';
-import axios from 'axios';
+import { useFetch } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { ErrorFound, NotFound } from '../components/NotFound';
 
 const HomePage = () => {
-  const { isLoading, isError, isSuccess, data, error } = useQuery('countries', async () => {
-    const { data } = await axios('https://restcountries.com/v2/all');
-    return data;
-  });
+  const { isLoading, isError, isSuccess, data, error } = useFetch(
+    'countries',
+    'https://restcountries.com/v2/all'
+  );
 
   if (isError) {
     if (error?.message === 'Request failed with status code 404') {
