@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   CardWrapper,
   HomeWrapper,
@@ -12,7 +11,8 @@ import {
   DropDownHeader,
   DropDownListContainer,
   DropDownList,
-  ListItem
+  ListItem,
+  HomeHeader
 } from '../Styles';
 import LoadingDots from '../components/Loader';
 import { useFetch } from '../api';
@@ -40,19 +40,14 @@ const HomePage = () => {
   };
   // eslint-disable-next-line no-unused-vars
   const regions = [
-    'European Union',
-    'European Free Trade Association',
-    'Caribbean Community',
-    'Pacific Alliance',
-    'African Union',
-    'Union of South American Nations',
-    'Eurasian Economic Union',
-    'Arab League',
-    'Association of Southeast Asian Nations',
-    'Central American Integration System',
-    'Central European Free Trade Agreement',
-    'North American Free Trade Agreement',
-    'South Asian Association for Regional Cooperation'
+    'Asia',
+    'Europe',
+    'Africa',
+    'Oceania',
+    'Americas',
+    'Polar',
+    'Antarctic Ocean',
+    'Antarctic'
   ];
   // const [filteredData, setFilteredData] = useState(data);
   const [query, setQuery] = useState(null);
@@ -60,27 +55,28 @@ const HomePage = () => {
     setQuery(e.target.value.toLowerCase());
   };
 
-  const filteredData =
-    query !== null
-      ? data.filter((el) => {
-          el.name.toLowerCase().includes(query);
-        })
-      : data;
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const toggling = () => setIsOpen(!isOpen);
-  const options = ['Mangoes', 'Apples', 'Oranges'];
 
   const onOptionClicked = (value) => () => {
     setSelectedOption(value);
     setIsOpen(false);
   };
-  console.log(selectedOption);
+
+  const filteredData =
+    query !== null || selectedOption !== null
+      ? query
+        ? data.filter((el) => el.name.toLowerCase().includes(query))
+        : selectedOption === 'All'
+        ? data
+        : data.filter((el) => el.region.toLowerCase() === selectedOption.toLowerCase())
+      : data;
 
   return (
     <Home>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <HomeHeader>
         <Input
           onChange={handleSearchChange}
           placeholder="Type to search for a country"
@@ -94,6 +90,9 @@ const HomePage = () => {
           {isOpen && (
             <DropDownListContainer>
               <DropDownList>
+                <ListItem onClick={onOptionClicked('All')} key={Math.random()}>
+                  All
+                </ListItem>
                 {regions.map((option) => (
                   <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
                     {option}
@@ -103,7 +102,7 @@ const HomePage = () => {
             </DropDownListContainer>
           )}
         </DropDownContainer>
-      </div>
+      </HomeHeader>
 
       <HomeWrapper>
         {isLoading ? <LoadingDots /> : <></>}

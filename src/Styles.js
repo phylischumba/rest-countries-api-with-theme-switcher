@@ -7,6 +7,7 @@ export const NavContainer = styled.nav`
   background: ${(props) => props.theme.body};
   position: fixed;
   font-weight: 600;
+  z-index: 1;
 `;
 
 export const CardWrapper = styled.div`
@@ -64,7 +65,7 @@ export const ThemeButton = styled.button`
   right: 10px;
   top: 5px;
   color: inherit;
-  z-index: 1;
+  z-index: 3;
 `;
 export const BackButton = styled.button`
   background: inherit;
@@ -123,10 +124,13 @@ export const DetailCont = styled.section`
 `;
 
 export const Input = styled.input`
-  background: ${(props) => props.theme.input};
+  background: ${(props) => props.theme.body};
   color: inherit;
   padding: 10px;
   width: 200px;
+  height: 30px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 export const Main = styled('div')`
@@ -145,6 +149,10 @@ export const DropDownHeader = styled('div')`
   font-size: 1.3rem;
   color: inherit;
   background: inherit;
+  width: 200px;
+  @media (max-width: 500px) {
+    width: 150px;
+  }
 `;
 
 export const DropDownListContainer = styled('div')`
@@ -170,4 +178,9 @@ export const DropDownList = styled('ul')`
 export const ListItem = styled('li')`
   list-style: none;
   margin-bottom: 0.8em;
+`;
+
+export const HomeHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
