@@ -130,7 +130,7 @@ export const Input = styled.input`
   width: 200px;
   height: 30px;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 `;
 
 export const Main = styled('div')`
@@ -143,10 +143,10 @@ export const DropDownContainer = styled('div')``;
 
 export const DropDownHeader = styled('div')`
   margin-bottom: 0.8em;
-  padding: 0.4em 2em 0.4em 1em;
+  padding: 0.7em 2em 0.7em 1em;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: inherit;
   background: inherit;
   width: 200px;
