@@ -13,7 +13,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -28,14 +27,15 @@ Users should be able to:
 - Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark mode _(optional)_
 
+### Home page, dark mode
 ![](./src/images/home.png)
 
+### Detail page, light mode
 ![](./src/images/detail.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Live Site](https://61e85b983b3f326045abc399--condescending-shannon-84449e.netlify.app/)
 
 ### Built with
 
@@ -46,12 +46,6 @@ Users should be able to:
 - [Styled Components](https://styled-components.com/) - For styles
 - React router
 
-## Author
-
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
 
