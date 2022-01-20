@@ -75,6 +75,15 @@ export const BackButton = styled.button`
   width: 50px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
+export const BorderButton = styled.button`
+  background: inherit;
+  color: inherit;
+  border: none;
+  padding: 5px;
+  margin: 0 10px 10px 0;
+  width: 100px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+`;
 export const DetailPage = styled.div`
   width: 100%;
   display: flex;

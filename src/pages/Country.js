@@ -9,7 +9,8 @@ import {
   Span,
   DetailSect,
   DetailSectOne,
-  DetailCont
+  DetailCont,
+  BorderButton
 } from '../Styles';
 import { NotFound, ErrorFound } from '../components/NotFound';
 import LoadingDots from '../components/Loader';
@@ -21,6 +22,11 @@ export default function Country() {
     `https://restcountries.com/v2/name/${params.countryid}`
   );
   let country = isSuccess && data[0];
+  const { isSuccess: countriesSuccess, data: countries } = useFetch(
+    'countries',
+    'https://restcountries.com/v2/all'
+  );
+  const bord = country?.borders?.map((e) => countries?.find((ele) => ele?.alpha3Code === e));
 
   let navigate = useNavigate();
   if (isError && error?.message === 'Request failed with status code 404') {
@@ -68,7 +74,7 @@ export default function Country() {
                 </p>
                 <p>
                   <Span>Currencies:</Span>{' '}
-                  {country?.currencies?.length
+                  {countriesSuccess && country?.currencies?.length
                     ? country?.currencies?.map((currency, index) => (
                         <span key={index}>
                           {currency.name}
@@ -96,6 +102,18 @@ export default function Country() {
                       ))
                     : 'N/A'}
                 </p>
+                <>
+                  <Span>Border Countries:</Span>
+                  <div>
+                    {bord?.map((ele) => (
+                      <BorderButton
+                        key={Math.random()}
+                        onClick={() => navigate(`/countries/${ele?.name}`)}>
+                        {ele?.name}
+                      </BorderButton>
+                    ))}
+                  </div>
+                </>
               </DetailSectOne>
             </DetailSect>
           </Details>
